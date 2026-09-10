@@ -49,7 +49,3 @@ The terminal will provide a local URL (usually `http://localhost:5173`). Open yo
 - **Custom Design:** Features a unique custom cursor and highly customized Tailwind components.
 - **Downloadable Resume:** Integrated one-click resume download functionality.
 
-## 👤 Author
-**Sakthi Paramesh B**
-- **GitHub:** [@Sakthi-Paramesh](https://github.com/Sakthi-Paramesh)
-- **LinkedIn:** [Sakthi Paramesh B](https://www.linkedin.com/in/sakthi-paramesh-b-93643834a)
