@@ -1,274 +1,140 @@
-import { useEffect, useRef, useCallback } from 'react';
 import { motion } from 'framer-motion';
-import { Link } from 'react-scroll';
 import { TypeAnimation } from 'react-type-animation';
-import { FiDownload, FiArrowDown, FiEye } from 'react-icons/fi';
+import { FiDownload, FiEye } from 'react-icons/fi';
 import { FaGithub, FaLinkedin, FaInstagram } from 'react-icons/fa';
 import { PERSONAL, TYPING_ROLES } from '../../utils/data';
 
-// ===== Particle Canvas =====
-function ParticleCanvas() {
-  const canvasRef = useRef(null);
-
-  useEffect(() => {
-    const canvas = canvasRef.current;
-    if (!canvas) return;
-    const ctx = canvas.getContext('2d');
-    let W = canvas.width = window.innerWidth;
-    let H = canvas.height = window.innerHeight;
-
-    const particles = Array.from({ length: 80 }, () => ({
-      x: Math.random() * W,
-      y: Math.random() * H,
-      r: Math.random() * 2 + 0.5,
-      dx: (Math.random() - 0.5) * 0.4,
-      dy: (Math.random() - 0.5) * 0.4,
-      opacity: Math.random() * 0.6 + 0.1,
-      color: Math.random() > 0.5 ? '#00CFFF' : '#7C3AED',
-    }));
-
-    let mouseX = W / 2, mouseY = H / 2;
-
-    const onMouseMove = (e) => { mouseX = e.clientX; mouseY = e.clientY; };
-    window.addEventListener('mousemove', onMouseMove);
-
-    const onResize = () => {
-      W = canvas.width = window.innerWidth;
-      H = canvas.height = window.innerHeight;
-    };
-    window.addEventListener('resize', onResize);
-
-    let raf;
-    const draw = () => {
-      ctx.clearRect(0, 0, W, H);
-
-      // Draw connections
-      for (let i = 0; i < particles.length; i++) {
-        for (let j = i + 1; j < particles.length; j++) {
-          const dx = particles[i].x - particles[j].x;
-          const dy = particles[i].y - particles[j].y;
-          const dist = Math.sqrt(dx * dx + dy * dy);
-          if (dist < 120) {
-            ctx.beginPath();
-            ctx.strokeStyle = `rgba(0,207,255,${0.05 * (1 - dist / 120)})`;
-            ctx.lineWidth = 0.5;
-            ctx.moveTo(particles[i].x, particles[i].y);
-            ctx.lineTo(particles[j].x, particles[j].y);
-            ctx.stroke();
-          }
-        }
-      }
-
-      // Draw particles & mouse interaction
-      particles.forEach((p) => {
-        const mdx = mouseX - p.x;
-        const mdy = mouseY - p.y;
-        const mDist = Math.sqrt(mdx * mdx + mdy * mdy);
-        if (mDist < 100) {
-          p.x -= (mdx / mDist) * 0.8;
-          p.y -= (mdy / mDist) * 0.8;
-        }
-
-        p.x += p.dx;
-        p.y += p.dy;
-
-        if (p.x < 0 || p.x > W) p.dx *= -1;
-        if (p.y < 0 || p.y > H) p.dy *= -1;
-
-        ctx.beginPath();
-        ctx.arc(p.x, p.y, p.r, 0, Math.PI * 2);
-        ctx.fillStyle = p.color + Math.round(p.opacity * 255).toString(16).padStart(2, '0');
-        ctx.fill();
-
-        // Glow
-        ctx.beginPath();
-        ctx.arc(p.x, p.y, p.r * 2, 0, Math.PI * 2);
-        const grd = ctx.createRadialGradient(p.x, p.y, 0, p.x, p.y, p.r * 2);
-        grd.addColorStop(0, p.color + '40');
-        grd.addColorStop(1, 'transparent');
-        ctx.fillStyle = grd;
-        ctx.fill();
-      });
-
-      raf = requestAnimationFrame(draw);
-    };
-    draw();
-
-    return () => {
-      cancelAnimationFrame(raf);
-      window.removeEventListener('mousemove', onMouseMove);
-      window.removeEventListener('resize', onResize);
-    };
-  }, []);
-
-  return (
-    <canvas
-      ref={canvasRef}
-      id="particles-canvas"
-      style={{ position: 'absolute', inset: 0, pointerEvents: 'none', zIndex: 0 }}
-    />
-  );
-}
-
-// ===== Build typing sequence =====
 const typeSequence = TYPING_ROLES.flatMap((r) => [r, 1800]).flat();
 
 export default function Hero() {
   return (
-    <section
-      id="home"
-      className="relative min-h-screen flex items-center bg-grid overflow-hidden"
-    >
-      {/* Particle canvas */}
-      <ParticleCanvas />
+    <section id="home" className="relative min-h-screen flex items-center bg-grid overflow-hidden" style={{ background: 'var(--black-950)' }}>
+      {/* Grid overlay */}
+      <div className="bg-grid absolute inset-0 z-0 pointer-events-none" />
 
-      {/* Aurora blobs */}
-      <div className="aurora-blob"
-        style={{ width: 600, height: 600, background: '#00CFFF', top: '10%', left: '-10%', animation: 'aurora 10s ease-in-out infinite' }} />
-      <div className="aurora-blob"
-        style={{ width: 500, height: 500, background: '#7C3AED', bottom: '5%', right: '-10%', animation: 'aurora 12s ease-in-out 3s infinite' }} />
-      <div className="aurora-blob"
-        style={{ width: 300, height: 300, background: '#00CFFF', top: '60%', left: '40%', animation: 'aurora 8s ease-in-out 1.5s infinite', opacity: 0.08 }} />
+      {/* Main Content */}
+      <div className="container relative z-10 pt-36 sm:pt-44 pb-20">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-20 items-center">
 
-      {/* Main content */}
-      <div className="container relative z-10 py-20 pt-28">
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
-
-          {/* LEFT — Text */}
+          {/* LEFT — Text Content */}
           <motion.div
             initial={{ opacity: 0, x: -60 }}
             animate={{ opacity: 1, x: 0 }}
-            transition={{ duration: 0.9, ease: [0.4, 0, 0.2, 1] }}
+            transition={{ duration: 0.9, ease: [0.16, 1, 0.3, 1] }}
             className="flex flex-col gap-6"
           >
-            {/* Greeting */}
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.2, duration: 0.6 }}
-              className="flex items-center gap-3"
-            >
-              <div className="h-px w-12 bg-gradient-to-r from-transparent to-primary" />
-              <span className="text-primary font-mono text-sm tracking-[0.2em] uppercase">
+            {/* Greeting Badge */}
+            <motion.div initial={{ opacity: 0, y: 18 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.2, duration: 0.6 }}
+              className="flex items-center gap-3">
+              <div style={{ height: '1px', width: '56px', background: 'linear-gradient(to right, transparent, #3b82f6)' }} />
+              <span className="badge-blue">
+                {/* Bootstrap Icon — hand-wave */}
+                <i className="bi bi-hand-index-thumb" style={{ fontSize: '0.8rem' }}></i>
                 Hello, I&apos;m
               </span>
-              <div className="h-px w-12 bg-gradient-to-l from-transparent to-primary" />
+              <div style={{ height: '1px', width: '56px', background: 'linear-gradient(to left, transparent, #3b82f6)' }} />
             </motion.div>
 
-            {/* Name */}
             <motion.h1
-              className="font-extrabold leading-tight"
-              style={{ fontSize: 'clamp(2.5rem, 5vw, 4rem)', letterSpacing: '-0.03em' }}
+              className="font-extrabold leading-none font-heading"
+              style={{ fontSize: 'clamp(3.5rem, 7vw, 5.5rem)', textTransform: 'uppercase', letterSpacing: '0.02em' }}
               initial={{ opacity: 0, y: 30 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.3, duration: 0.7 }}
             >
-              <span className="text-white">Sakthi </span>
-              <span className="shimmer-text">Paramesh B</span>
+              <motion.span initial={{ opacity: 0, x: -20 }} animate={{ opacity: 1, x: 0 }} transition={{ delay: 0.4 }}
+                className="text-white block">
+                Sakthi{' '}
+              </motion.span>
+              <motion.span initial={{ opacity: 0, scale: 0.9 }} animate={{ opacity: 1, scale: 1 }} transition={{ delay: 0.55 }}
+                className="text-primary block">
+                Paramesh B
+              </motion.span>
             </motion.h1>
 
-            {/* Typing */}
-            <motion.div
-              className="flex items-center gap-3"
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              transition={{ delay: 0.5 }}
-            >
-              <span className="text-white/50 font-mono text-lg">&gt;</span>
-              <span
-                className="gradient-text font-semibold"
-                style={{ fontSize: 'clamp(1.1rem, 2.5vw, 1.5rem)' }}
-              >
-                <TypeAnimation
-                  sequence={typeSequence}
-                  speed={50}
-                  repeat={Infinity}
-                  cursor={true}
-                />
+            {/* Typing Roles */}
+            <motion.div className="flex items-center gap-3" initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ delay: 0.5 }}>
+              <span style={{ color: '#3b82f6', fontFamily: 'JetBrains Mono', fontWeight: 700, fontSize: '1.2rem' }}>{'>'}</span>
+              <span className="gradient-text font-bold" style={{ fontSize: 'clamp(1.2rem, 2.8vw, 1.7rem)', fontFamily: "'Inter', sans-serif" }}>
+                <TypeAnimation sequence={typeSequence} speed={50} repeat={Infinity} cursor={true} />
               </span>
             </motion.div>
 
-            {/* Description */}
+            {/* Bio */}
             <motion.p
-              className="text-white/60 leading-relaxed max-w-lg"
-              style={{ fontSize: '1.05rem' }}
+              className="leading-relaxed max-w-xl font-medium"
+              style={{ color: 'rgba(255,255,255,0.72)', fontSize: '1.05rem', fontFamily: "'Inter', sans-serif" }}
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.6, duration: 0.7 }}
             >
-              Passionate CSE student crafting intelligent, scalable web applications. 
-              Specializing in AI integration, full-stack development, and building 
-              experiences that leave an impression.
+              Passionate Computer Science Engineering student crafting intelligent, scalable web applications.
+              Specializing in AI integration, Spring Boot backend architecture, and high-impact full-stack experiences.
             </motion.p>
 
-            {/* Buttons */}
-            <motion.div
-              className="flex flex-wrap gap-4"
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.7, duration: 0.6 }}
-            >
-              <a href={PERSONAL.resumeUrl} target="_blank" rel="noreferrer" className="btn-outline">
+            {/* CTA Buttons */}
+            <motion.div className="flex flex-wrap gap-4 pt-2"
+              initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.7, duration: 0.6 }}>
+              <a href={PERSONAL.resumeUrl} target="_blank" rel="noreferrer" className="btn-outline btn-3d-press">
                 <FiEye size={18} /> View Resume
               </a>
-              <a href={PERSONAL.resumeUrl} download="Sakthi_Paramesh_B_Resume.pdf" className="btn-primary">
-                <FiDownload size={18} /> Download Resume
+              <a href={PERSONAL.resumeUrl} download="Sakthi_Paramesh_B_Resume.pdf" className="btn-primary btn-3d-press">
+                <FiDownload size={18} /> Download CV
               </a>
             </motion.div>
 
-            {/* Social links */}
-            <motion.div
-              className="flex items-center gap-4 pt-2"
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              transition={{ delay: 0.9 }}
-            >
-              <a href={PERSONAL.github} target="_blank" rel="noreferrer"
-                className="p-3 rounded-full glass glass-hover text-white/70 hover:text-primary transition-all duration-300">
-                <FaGithub size={20} />
-              </a>
-              <a href={PERSONAL.linkedin} target="_blank" rel="noreferrer"
-                className="p-3 rounded-full glass glass-hover text-white/70 hover:text-primary transition-all duration-300">
-                <FaLinkedin size={20} />
-              </a>
-              <a href={PERSONAL.instagram} target="_blank" rel="noreferrer"
-                className="p-3 rounded-full glass glass-hover text-white/70 hover:text-primary transition-all duration-300">
-                <FaInstagram size={20} />
-              </a>
-              <div className="h-px w-16 bg-gradient-to-r from-white/20 to-transparent" />
-              <span className="text-sm text-white/40 font-mono">Open to opportunities</span>
+            {/* Social Links */}
+            <motion.div className="flex items-center gap-4 pt-4"
+              style={{ borderTop: '1px solid rgba(59,130,246,0.15)' }}
+              initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ delay: 0.9 }}>
+              {[
+                { href: PERSONAL.github,    icon: <FaGithub size={20} />,    label: 'GitHub'    },
+                { href: PERSONAL.linkedin,  icon: <FaLinkedin size={20} />,  label: 'LinkedIn'  },
+                { href: PERSONAL.instagram, icon: <FaInstagram size={20} />, label: 'Instagram' },
+              ].map(({ href, icon, label }) => (
+                <a key={label} href={href} target="_blank" rel="noreferrer" aria-label={label}
+                  className="glass glass-hover transition-all duration-300"
+                  style={{ padding: '0.85rem', borderRadius: '50%', color: 'rgba(255,255,255,0.7)', display: 'flex' }}
+                  onMouseEnter={e => e.currentTarget.style.color = '#3b82f6'}
+                  onMouseLeave={e => e.currentTarget.style.color = 'rgba(255,255,255,0.7)'}>
+                  {icon}
+                </a>
+              ))}
+              <div style={{ height: '1px', width: '40px', background: 'linear-gradient(to right, rgba(59,130,246,0.3), transparent)' }} />
+              <span style={{ fontSize: '0.78rem', color: 'rgba(255,255,255,0.4)', fontFamily: 'JetBrains Mono' }}>
+                {/* Bootstrap Icon */}
+                <i className="bi bi-circle-fill" style={{ color: '#22c55e', fontSize: '0.55rem', marginRight: '0.4rem' }}></i>
+                Available for Hire
+              </span>
             </motion.div>
           </motion.div>
 
-          {/* RIGHT — Profile Image */}
+          {/* RIGHT — 3D Profile Card */}
           <motion.div
-            className="flex items-center justify-center"
-            initial={{ opacity: 0, x: 60 }}
-            animate={{ opacity: 1, x: 0 }}
-            transition={{ duration: 0.9, delay: 0.2, ease: [0.4, 0, 0.2, 1] }}
+            className="flex items-center justify-center relative"
+            initial={{ opacity: 0, scale: 0.7, rotateY: -15 }}
+            animate={{ opacity: 1, scale: 1, rotateY: 0 }}
+            transition={{ type: 'spring', stiffness: 100, damping: 14, delay: 0.35 }}
+            style={{ perspective: '1200px' }}
           >
-            <div className="relative" style={{ animation: 'float 6s ease-in-out infinite' }}>
-              {/* Outer glow rings */}
-              <div className="absolute inset-0 rounded-full opacity-30"
-                style={{
-                  background: 'radial-gradient(circle, rgba(0,207,255,0.3) 0%, transparent 70%)',
-                  transform: 'scale(1.5)',
-                  animation: 'glowPulse 3s ease-in-out infinite'
-                }} />
+            <div className="relative group" style={{ transformStyle: 'preserve-3d' }}>
+              {/* Outer glow aura */}
+              <div className="absolute inset-0 rounded-full blur-3xl pointer-events-none"
+                style={{ background: 'radial-gradient(circle, rgba(59,130,246,0.55) 0%, rgba(37,99,235,0.35) 50%, transparent 70%)', transform: 'scale(1.3)', opacity: 0.45 }} />
 
-              {/* Rotating gradient border */}
-              <div className="profile-ring" style={{ width: 320, height: 320 }}>
-                {/* Inner circle */}
-                <div className="rounded-full overflow-hidden"
-                  style={{
-                    width: 300, height: 300,
-                    background: 'linear-gradient(135deg, #111, #1a1a2e)',
-                    border: '3px solid rgba(0,207,255,0.3)',
-                  }}>
+              {/* Spinning orange ring */}
+              <div className="relative rounded-full" style={{ padding: '5px' }}>
+                <div className="absolute inset-0 rounded-full"
+                  style={{ background: 'conic-gradient(from 0deg, #3b82f6, #1d4ed8, #1e40af, #3b82f6, #60a5fa, #3b82f6)', animation: 'spin 12s linear infinite', filter: 'drop-shadow(0 0 20px rgba(59,130,246,0.8))' }} />
+
+                {/* Profile Image */}
+                <div className="relative rounded-full overflow-hidden z-10 transition-transform duration-500"
+                  style={{ width: '18rem', height: '18rem', background: 'linear-gradient(135deg, #0f0f0f, #1a1a1a)', border: '4px solid #080808', boxShadow: '0 0 40px rgba(59,130,246,0.35), 0 0 80px rgba(59,130,246,0.15)' }}>
                   <img
                     src="/profile.png"
                     alt="Sakthi Paramesh B — AI & Full Stack Developer"
-                    style={{ width: '100%', height: '100%', objectFit: 'cover', objectPosition: 'center top' }}
+                    style={{ width: '100%', height: '100%', objectFit: 'cover', objectPosition: 'center top', transition: 'transform 0.7s ease' }}
+                    className="group-hover:scale-105"
                   />
                 </div>
               </div>
@@ -279,9 +145,11 @@ export default function Hero() {
       </div>
 
       {/* Scroll Indicator */}
-      <div className="scroll-indicator">
-        <span className="text-xs text-white/30 font-mono tracking-widest">SCROLL</span>
-        <FiArrowDown className="text-primary animate-bounce" size={18} />
+      <div className="absolute bottom-6 left-1/2 -translate-x-1/2 flex flex-col items-center gap-1 z-10">
+        <span style={{ fontSize: '0.65rem', color: 'rgba(255,255,255,0.3)', fontFamily: 'JetBrains Mono', letterSpacing: '0.2em', textTransform: 'uppercase' }}>
+          Scroll
+        </span>
+        <i className="bi bi-chevron-double-down animate-bounce" style={{ color: '#3b82f6', fontSize: '1rem' }}></i>
       </div>
     </section>
   );

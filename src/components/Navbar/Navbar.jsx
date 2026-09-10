@@ -1,7 +1,6 @@
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 import { Link } from 'react-scroll';
 import { motion, AnimatePresence } from 'framer-motion';
-import { FiMenu, FiX, FiDownload } from 'react-icons/fi';
 import { useScrollDirection, useActiveSection } from '../../hooks/usePortfolio';
 import { NAV_LINKS, PERSONAL } from '../../utils/data';
 
@@ -23,21 +22,17 @@ export default function Navbar() {
       <div
         className={`transition-all duration-500 ${
           scrolled
-            ? 'glass-dark shadow-xl shadow-black/50'
+            ? 'glass-dark shadow-xl'
             : 'bg-transparent'
         }`}
+        style={scrolled ? { borderBottom: '1px solid rgba(59,130,246,0.15)', boxShadow: '0 4px 30px rgba(0,0,0,0.6)' } : {}}
       >
-        <div className="container flex items-center justify-between h-16">
+        <div className="container flex items-center justify-between" style={{ height: '5rem' }}>
           {/* Logo */}
-          <Link to="home" smooth duration={600} className="flex items-center gap-3 group" style={{cursor:'none'}}>
-            {/* Profile photo avatar */}
+          <Link to="home" smooth duration={600} className="flex items-center gap-3 group" style={{ cursor: 'none' }}>
             <div className="relative flex-shrink-0">
-              <div className="w-9 h-9 rounded-full overflow-hidden"
-                style={{
-                  background: 'linear-gradient(135deg, #00CFFF, #7C3AED)',
-                  padding: '2px',
-                  boxShadow: '0 0 10px rgba(0,207,255,0.3)',
-                }}>
+              <div className="rounded-full overflow-hidden"
+                style={{ width: '2.5rem', height: '2.5rem', background: 'linear-gradient(135deg, #3b82f6, #2563eb)', padding: '2px', boxShadow: '0 0 16px rgba(59,130,246,0.55)' }}>
                 <img
                   src="/profile.png"
                   alt="Sakthi Paramesh"
@@ -46,9 +41,10 @@ export default function Navbar() {
                 />
               </div>
               <div className="absolute inset-0 rounded-full opacity-0 group-hover:opacity-100 transition-opacity duration-300"
-                style={{ boxShadow: '0 0 16px rgba(0,207,255,0.7)' }} />
+                style={{ boxShadow: '0 0 22px rgba(59,130,246,0.9)' }} />
             </div>
-            <span className="font-bold text-white tracking-wide hidden sm:block">
+            <span className="hidden sm:block font-extrabold text-white"
+              style={{ fontSize: '1.05rem', fontFamily: "'Poppins', sans-serif", letterSpacing: '0.05em', textTransform: 'uppercase' }}>
               Sakthi<span className="gradient-text">Paramesh</span>
             </span>
           </Link>
@@ -63,7 +59,7 @@ export default function Navbar() {
                   duration={600}
                   offset={-70}
                   className={`nav-link ${active === href ? 'active' : ''}`}
-                  style={{cursor:'none'}}
+                  style={{ cursor: 'none' }}
                 >
                   {label}
                 </Link>
@@ -76,20 +72,23 @@ export default function Navbar() {
             <a
               href={PERSONAL.resumeUrl}
               download
-              className="btn-primary text-sm py-2 px-5 flex items-center gap-2"
+              className="btn-primary btn-3d-press"
+              style={{ fontSize: '0.8rem', padding: '0.6rem 1.25rem', gap: '0.4rem' }}
             >
-              <FiDownload size={14} />
+              {/* Bootstrap Icon */}
+              <i className="bi bi-download" style={{ fontSize: '0.85rem' }}></i>
               Resume
             </a>
           </div>
 
           {/* Mobile Menu Toggle */}
           <button
-            className="lg:hidden text-white p-2 rounded-lg hover:bg-white/10 transition-colors"
+            className="lg:hidden text-white p-2 rounded-lg transition-colors"
+            style={{ background: menuOpen ? 'rgba(59,130,246,0.1)' : 'transparent', border: '1px solid rgba(59,130,246,0.2)' }}
             onClick={() => setMenuOpen(!menuOpen)}
             aria-label="Toggle menu"
           >
-            {menuOpen ? <FiX size={22} /> : <FiMenu size={22} />}
+            <i className={`bi ${menuOpen ? 'bi-x-lg' : 'bi-list'}`} style={{ fontSize: '1.25rem', color: '#3b82f6' }}></i>
           </button>
         </div>
       </div>
@@ -102,7 +101,8 @@ export default function Navbar() {
             animate={{ opacity: 1, height: 'auto' }}
             exit={{ opacity: 0, height: 0 }}
             transition={{ duration: 0.3 }}
-            className="glass-dark border-t border-white/10 lg:hidden overflow-hidden"
+            className="glass-dark lg:hidden overflow-hidden"
+            style={{ borderBottom: '1px solid rgba(59,130,246,0.15)' }}
           >
             <ul className="flex flex-col py-4 px-6 gap-4">
               {NAV_LINKS.map(({ label, href }) => (
@@ -114,15 +114,16 @@ export default function Navbar() {
                     offset={-70}
                     className={`block py-2 nav-link text-base ${active === href ? 'active' : ''}`}
                     onClick={() => setMenuOpen(false)}
-                    style={{cursor:'none'}}
+                    style={{ cursor: 'none' }}
                   >
                     {label}
                   </Link>
                 </li>
               ))}
               <li>
-                <a href={PERSONAL.resumeUrl} download className="btn-primary w-full justify-center text-sm mt-2">
-                  <FiDownload size={14} /> Download Resume
+                <a href={PERSONAL.resumeUrl} download className="btn-primary w-full justify-center"
+                  style={{ fontSize: '0.85rem', padding: '0.75rem 1.5rem', marginTop: '0.5rem' }}>
+                  <i className="bi bi-download"></i> Download Resume
                 </a>
               </li>
             </ul>

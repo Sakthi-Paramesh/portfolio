@@ -4,11 +4,12 @@ export const PERSONAL = {
   name: 'Sakthi Paramesh B',
   title: 'AI & Full Stack Developer',
   email: 'sakthiparameshbala@gmail.com',
+  phone: '+91 9876543210',
   github: 'https://github.com/Sakthi-Paramesh',
   linkedin: 'https://www.linkedin.com/in/sakthi-paramesh-b-93643834a',
   instagram: 'https://instagram.com/itz.sxkthi',
   location: 'Cuddalore, Tamil Nadu',
-  resumeUrl: '/Sakthi_Paramesh_B_Resume.pdf',
+  resumeUrl: '/Sakthi_Paramesh_B_Resume.png',
   college: 'Shree Venkateshwara Hi-Tech Engineering College',
   degree: 'B.E. Computer Science Engineering',
   graduationYear: '2027',
@@ -25,47 +26,70 @@ export const TYPING_ROLES = [
 
 export const SKILLS = [
   {
-    category: 'Programming',
-    icon: '💻',
+    category: 'Programming & Logic',
+    id: 'programming',
+    description: 'Core object-oriented languages & algorithms',
+    iconKey: 'code',
     skills: [
-      { name: 'Java', percent: 90 },
-      { name: 'Python', percent: 80 },
-      { name: 'JavaScript', percent: 75 },
+      { name: 'Java', percent: 90, level: 'Expert', iconKey: 'java', color: '#ED8B00', desc: 'Core Java, OOP, Collections, Multithreading & DSA' },
+      { name: 'Python', percent: 82, level: 'Advanced', iconKey: 'python', color: '#3776AB', desc: 'Data structures, Scripting, AI/ML models & Automation' },
+      { name: 'JavaScript', percent: 80, level: 'Advanced', iconKey: 'javascript', color: '#F7DF1E', desc: 'ES6+, Asynchronous JS, DOM manipulation & APIs' },
     ],
   },
   {
-    category: 'Frontend',
-    icon: '🎨',
+    category: 'Frontend Development',
+    id: 'frontend',
+    description: 'Modern, responsive user interfaces & web design',
+    iconKey: 'frontend',
     skills: [
-      { name: 'HTML5', percent: 95 },
-      { name: 'CSS3', percent: 90 },
-      { name: 'Bootstrap', percent: 85 },
-      { name: 'React', percent: 75 },
+      { name: 'React', percent: 85, level: 'Advanced', iconKey: 'react', color: '#61DAFB', desc: 'Hooks, Component Architecture, State & Router' },
+      { name: 'HTML5', percent: 95, level: 'Master', iconKey: 'html5', color: '#E34F26', desc: 'Semantic HTML, Accessibility & SEO best practices' },
+      { name: 'CSS3', percent: 90, level: 'Expert', iconKey: 'css3', color: '#1572B6', desc: 'Flexbox, CSS Grid, Glassmorphism, Animations & Custom styling' },
+      { name: 'Tailwind CSS', percent: 88, level: 'Advanced', iconKey: 'tailwind', color: '#06B6D4', desc: 'Utility-first styling, Responsive layouts & Themes' },
+      { name: 'Bootstrap', percent: 85, level: 'Advanced', iconKey: 'bootstrap', color: '#7952B3', desc: 'Responsive grid systems & Pre-built UI components' },
     ],
   },
   {
-    category: 'Backend',
-    icon: '⚙️',
+    category: 'Backend & Frameworks',
+    id: 'backend',
+    description: 'Scalable server-side systems, microservices & REST APIs',
+    iconKey: 'backend',
     skills: [
-      { name: 'Spring Boot', percent: 85 },
-      { name: 'Django', percent: 70 },
+      { name: 'Spring Boot', percent: 88, level: 'Advanced', iconKey: 'springboot', color: '#6DB33F', desc: 'REST APIs, Spring Data JPA, Security & Dependency Injection' },
+      { name: 'Django', percent: 75, level: 'Proficient', iconKey: 'django', color: '#092E20', desc: 'Python web framework, ORM models & Admin suite' },
+      { name: 'REST APIs', percent: 90, level: 'Expert', iconKey: 'rest', color: '#00CFFF', desc: 'API Design, JSON payloads, Status Codes & Integration' },
+      { name: 'Node.js', percent: 85, level: 'Advanced', iconKey: 'nodejs', color: '#339933', desc: 'Event-driven backend & Fast API Development' },
+      { name: 'Express.js', percent: 82, level: 'Advanced', iconKey: 'express', color: '#000000', desc: 'Routing, Middleware & Server logic' },
     ],
   },
   {
-    category: 'Database',
-    icon: '🗄️',
+    category: 'Database & Systems',
+    id: 'database',
+    description: 'Relational data modeling & query optimization',
+    iconKey: 'database',
     skills: [
-      { name: 'MySQL', percent: 85 },
+      { name: 'MySQL', percent: 86, level: 'Advanced', iconKey: 'mysql', color: '#4479A1', desc: 'Complex Joins, Indexing, Schema design & Stored Procedures' },
+      { name: 'Relational Design', percent: 85, level: 'Advanced', iconKey: 'database_design', color: '#7C3AED', desc: 'Normalization, Entity Relationships & Transaction management' },
+      { name: 'MongoDB', percent: 80, level: 'Advanced', iconKey: 'mongodb', color: '#47A248', desc: 'NoSQL, Document-oriented storage & Aggregations' },
     ],
   },
   {
-    category: 'Tools',
-    icon: '🔧',
+    category: 'Tools & Ecosystem',
+    id: 'tools',
+    description: 'Version control, development environments & testing tools',
+    iconKey: 'tools',
     skills: [
-      { name: 'Git & GitHub', percent: 90 },
-      { name: 'VS Code', percent: 95 },
-      { name: 'IntelliJ IDEA', percent: 88 },
-      { name: 'Postman', percent: 80 },
+      { name: 'Git & GitHub', percent: 92, level: 'Expert', iconKey: 'git', color: '#F05032', desc: 'Branching, Pull Requests, Versioning & CI/CD workflows' },
+      { name: 'VS Code', percent: 95, level: 'Master', iconKey: 'vscode', color: '#007ACC', desc: 'Debugging, Extensions, Workspace configs & Productivity' },
+      { name: 'IntelliJ IDEA', percent: 88, level: 'Advanced', iconKey: 'intellij', color: '#FE315D', desc: 'Java/Spring debugging, Profiling & Refactoring' },
+      { name: 'Postman', percent: 85, level: 'Advanced', iconKey: 'postman', color: '#FF6C37', desc: 'API testing, Endpoint collections, Mock servers & Documentation' },
+      { name: 'Docker', percent: 80, level: 'Advanced', iconKey: 'docker', color: '#2496ED', desc: 'Containerization, Docker Compose, Images & Volumes' },
+      { name: 'AWS', percent: 75, level: 'Proficient', iconKey: 'aws', color: '#FF9900', desc: 'EC2, S3, RDS, Lambda & Cloud Deployment' },
+      { name: 'Kubernetes', percent: 70, level: 'Intermediate', iconKey: 'kubernetes', color: '#326CE5', desc: 'Orchestration, Pods, Services & Deployments' },
+      { name: 'GraphQL', percent: 75, level: 'Proficient', iconKey: 'graphql', color: '#E10098', desc: 'Queries, Mutations, Resolvers & Apollo' },
+      { name: 'Next.js', percent: 80, level: 'Advanced', iconKey: 'nextjs', color: '#000000', desc: 'SSR, SSG, API Routes & App Router' },
+      { name: 'TypeScript', percent: 85, level: 'Advanced', iconKey: 'typescript', color: '#3178C6', desc: 'Static typing, Interfaces, Generics & Utility types' },
+      { name: 'Redis', percent: 75, level: 'Proficient', iconKey: 'redis', color: '#DC382D', desc: 'In-memory caching, Pub/Sub & Key-Value storage' },
     ],
   },
 ];
@@ -78,8 +102,8 @@ export const PROJECTS = [
       'An intelligent AI-powered healthcare platform that streamlines patient management, provides AI-driven diagnostics, and enables seamless doctor-patient communication through advanced NLP.',
     tech: ['React', 'Spring Boot', 'Python', 'TensorFlow', 'MySQL'],
     image: '/clinico-project.png',
-    github: '#',
-    live: '#',
+    github: 'https://github.com/Sakthi-Paramesh/medicine-interaction.git',
+    live: 'https://github.com/Sakthi-Paramesh/medicine-interaction.git',
     color: '#00CFFF',
   },
   {
@@ -89,8 +113,8 @@ export const PROJECTS = [
       'An advanced agriculture dashboard that leverages machine learning to predict optimal crops based on soil metrics, weather data, and environmental factors.',
     tech: ['Python', 'Machine Learning', 'React', 'Tailwind CSS', 'API'],
     image: '/crop-prediction.png',
-    github: '#',
-    live: '#',
+    github: 'https://github.com/Sakthi-Paramesh/crop_prediction_System.git',
+    live: 'https://github.com/Sakthi-Paramesh/crop_prediction_System.git',
     color: '#34D399',
   },
   {
@@ -100,7 +124,7 @@ export const PROJECTS = [
       'A comprehensive web application providing real-time weather forecasts and detailed tourist information, featuring interactive maps and dynamic location-based search.',
     tech: ['React', 'OpenWeather API', 'Tailwind CSS', 'Vite', 'JavaScript'],
     image: '/citysense-project.png',
-    github: '#',
+    github: 'https://github.com/Sakthi-Paramesh/tourist_app.git',
     live: 'https://tourist-app-green.vercel.app/',
     color: '#00CFFF',
   },
@@ -115,6 +139,24 @@ export const PROJECTS = [
     github: '#',
     live: '#',
     color: '#3B82F6',
+  },
+  {
+    id: 6,
+    title: 'Eldercare AI Dashboard',
+    description: 'A modern, sleek dashboard interface for an Eldercare AI application, featuring real-time health monitoring, predictive alerts, and automated care schedules.',
+    tech: ['React', 'Python', 'Machine Learning', 'Tailwind CSS'],
+    image: '/eldercare_ai.png',
+    github: 'https://github.com/Sakthi-Paramesh/ElderCare.git',
+    live: 'https://github.com/Sakthi-Paramesh/ElderCare.git',
+  },
+  {
+    id: 7,
+    title: 'Disaster Management System',
+    description: 'A high-tech dashboard interface for a Disaster Management System, showing real-time maps, emergency alerts, and intelligent resource allocation.',
+    tech: ['React', 'Node.js', 'Express', 'API'],
+    image: '/disaster_management.png',
+    github: '#',
+    live: '#',
   },
 ];
 
@@ -232,6 +274,17 @@ export const CERTIFICATIONS = [
     image: '/excel-cert.jpg',
     description: 'Participated in Ideathon (Theme: Impact of AI) at the National Level Student Confluence.',
   },
+  {
+    id: 8,
+    title: 'Game Development Workshop',
+    issuer: "LET'S GAMETECH",
+    badge: 'Certificate of Completion',
+    year: '2025',
+    color: '#8B5CF6',
+    icon: '🎮',
+    image: '/gametech-cert.jpg',
+    description: 'Successfully completed a two-day hands-on workshop covering Unity Basics, Game Physics, 2D Game Design, and Character Animation.',
+  },
 ];
 
 export const STATS = [
@@ -242,12 +295,45 @@ export const STATS = [
   { label: 'Months Experience', value: 8, suffix: '+' },
 ];
 
+export const QUOTES = [
+  {
+    id: 1,
+    quote: "Simplicity is prerequisite for reliability. High-quality software is clear, robust, and engineered to solve meaningful human problems.",
+    author: "Sakthi Paramesh B",
+    role: "AI & Full Stack Developer",
+    badge: "Personal Mindset",
+    accentColor: "#00CFFF"
+  },
+  {
+    id: 2,
+    quote: "First, solve the problem. Then, write the code.",
+    author: "John Johnson",
+    role: "Computer Science Pioneer",
+    badge: "Engineering Philosophy",
+    accentColor: "#7C3AED"
+  },
+  {
+    id: 3,
+    quote: "Code is like humor. When you have to explain it, it's bad. Strive for self-documenting, elegant architecture.",
+    author: "Cory House",
+    role: "Software Architect",
+    badge: "Clean Code Principle",
+    accentColor: "#34D399"
+  },
+  {
+    id: 4,
+    quote: "Artificial Intelligence is not magic — it's logic, mathematics, and human curiosity transformed into code that empowers society.",
+    author: "Sakthi Paramesh B",
+    role: "AI Developer",
+    badge: "Tech Vision",
+    accentColor: "#F59E0B"
+  }
+];
+
 export const NAV_LINKS = [
-  { label: 'Home', href: 'home' },
   { label: 'About', href: 'about' },
   { label: 'Skills', href: 'skills' },
-  { label: 'Projects', href: 'projects' },
   { label: 'Experience', href: 'experience' },
+  { label: 'Projects', href: 'projects' },
   { label: 'Certifications', href: 'certifications' },
-  { label: 'Contact', href: 'contact' },
 ];
