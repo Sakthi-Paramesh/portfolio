@@ -99,7 +99,7 @@ export const PROJECTS = [
     id: 1,
     title: 'HumanEase AI',
     description:
-      'An intelligent AI-powered healthcare platform that streamlines patient management, provides AI-driven diagnostics, and enables seamless doctor-patient communication through advanced NLP.',
+      'AI-powered healthcare platform that analyzes drug interactions and predicts patient risks using TensorFlow ML models. Built with Spring Boot microservices and a React dashboard, it bridges the gap between raw medical data and actionable clinical decisions.',
     tech: ['React', 'Spring Boot', 'Python', 'TensorFlow', 'MySQL'],
     image: '/clinico-project.png',
     github: 'https://github.com/Sakthi-Paramesh/medicine-interaction.git',
@@ -110,7 +110,7 @@ export const PROJECTS = [
     id: 2,
     title: 'Crop Prediction Dashboard',
     description:
-      'An advanced agriculture dashboard that leverages machine learning to predict optimal crops based on soil metrics, weather data, and environmental factors.',
+      'Smart agriculture platform that recommends the best crop for a given field by processing soil NPK levels, rainfall, humidity, and temperature through a trained ML model. Helps farmers make data-driven decisions and maximize yield.',
     tech: ['Python', 'Machine Learning', 'React', 'Tailwind CSS', 'API'],
     image: '/crop-prediction.png',
     github: 'https://github.com/Sakthi-Paramesh/crop_prediction_System.git',
@@ -121,29 +121,29 @@ export const PROJECTS = [
     id: 3,
     title: 'CitySense Weather & Tourism',
     description:
-      'A comprehensive web application providing real-time weather forecasts and detailed tourist information, featuring interactive maps and dynamic location-based search.',
+      'Full-stack travel companion app that combines live OpenWeather API data with curated tourist spot listings for any city worldwide. Features interactive location search, day-wise forecasts, and a clean, responsive UI built with React and Vite.',
     tech: ['React', 'OpenWeather API', 'Tailwind CSS', 'Vite', 'JavaScript'],
     image: '/citysense-project.png',
     github: 'https://github.com/Sakthi-Paramesh/tourist_app.git',
     live: 'https://tourist-app-green.vercel.app/',
     color: '#00CFFF',
   },
-
   {
     id: 5,
     title: 'ShopHub E-Commerce',
     description:
-      'A feature-rich, high-performance e-commerce platform offering real-time inventory management, secure checkout, dark mode, and an intuitive user interface for a seamless shopping experience.',
+      'End-to-end MERN stack e-commerce platform with real-time cart management, JWT-based authentication, and a secure Razorpay-ready checkout flow. Features an admin dashboard for live inventory control, order tracking, and dark mode support.',
     tech: ['React', 'Node.js', 'Express', 'MongoDB', 'Tailwind CSS'],
     image: '/shophub-ecommerce.jpg',
-    github: '#',
-    live: '#',
+    github: 'https://github.com/Sakthi-Paramesh/E_commerce.git',
+    live: 'https://e-commerce-vh41.onrender.com',
     color: '#3B82F6',
   },
   {
     id: 6,
     title: 'Eldercare AI Dashboard',
-    description: 'A modern, sleek dashboard interface for an Eldercare AI application, featuring real-time health monitoring, predictive alerts, and automated care schedules.',
+    description:
+      'Compassionate AI system designed to monitor elderly patients in real time — tracking vitals, predicting health anomalies, and triggering automated care alerts. Built with a React frontend and Python ML backend to support remote caregivers.',
     tech: ['React', 'Python', 'Machine Learning', 'Tailwind CSS'],
     image: '/eldercare_ai.png',
     github: 'https://github.com/Sakthi-Paramesh/ElderCare.git',
@@ -152,7 +152,8 @@ export const PROJECTS = [
   {
     id: 7,
     title: 'Disaster Management System',
-    description: 'A high-tech dashboard interface for a Disaster Management System, showing real-time maps, emergency alerts, and intelligent resource allocation.',
+    description:
+      'Emergency response platform with live geolocation maps, real-time disaster alerts, and intelligent resource allocation across affected zones. Designed to assist authorities in rapid, data-driven decision-making during critical situations.',
     tech: ['React', 'Node.js', 'Express', 'API'],
     image: '/disaster_management.png',
     github: '#',

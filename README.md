@@ -49,3 +49,24 @@ The terminal will provide a local URL (usually `http://localhost:5173`). Open yo
 - **Custom Design:** Features a unique custom cursor and highly customized Tailwind components.
 - **Downloadable Resume:** Integrated one-click resume download functionality.
 
+<<<<<<< HEAD
+=======
+## 👤 Author
+**Sakthi Paramesh B**
+- **GitHub:** [@Sakthi-Paramesh](https://github.com/Sakthi-Paramesh)
+- **LinkedIn:** [Sakthi Paramesh B](https://www.linkedin.com/in/sakthi-paramesh-b-93643834a)
+
+---
+
+## 🛒 Featured Projects
+
+### ShopHub E-Commerce
+A feature-rich, high-performance e-commerce platform offering real-time inventory management, secure checkout, dark mode, and an intuitive user interface for a seamless shopping experience.
+
+**Tech Stack:** React · Node.js · Express · MongoDB · Tailwind CSS
+
+| | Link |
+|---|---|
+| 🌐 **Live Demo** | [https://e-commerce-vh41.onrender.com](https://e-commerce-vh41.onrender.com) |
+| 💻 **GitHub Repo** | [Sakthi-Paramesh/E_commerce](https://github.com/Sakthi-Paramesh/E_commerce.git) |
+>>>>>>> a0af452 (Updated project links)
