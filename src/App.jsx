@@ -48,7 +48,7 @@ function App() {
 
                 {/* Right: Education Details */}
                 <div className="flex flex-col gap-5 w-full">
-                  <h3 className="text-2xl font-bold text-gray-900 tracking-wide font-display border-b border-gray-200 pb-3">Education</h3>
+                  <h3 className="text-2xl font-bold text-gray-900 tracking-wide border-b border-gray-200 pb-3" style={{ fontFamily: "'Poppins', sans-serif" }}>Education</h3>
                   
                   <div className="flex flex-col gap-4">
                     {/* College */}
@@ -57,8 +57,8 @@ function App() {
                         <i className="bi bi-bank"></i>
                       </div>
                       <div>
-                        <h4 className="font-bold text-gray-800 text-[1rem]">Shree Venkateshwara Hi-Tech Engineering College</h4>
-                        <p className="text-sm text-gray-500 font-medium mt-1">B.E. Computer Science Engineering • <span className="text-blue-600 font-bold">CGPA: 9.0</span></p>
+                        <h4 className="font-bold text-gray-800 text-[1rem]" style={{ fontFamily: "'Poppins', sans-serif" }}>Shree Venkateshwara Hi-Tech Engineering College</h4>
+                        <p className="text-sm text-gray-500 font-medium mt-1" style={{ fontFamily: "'Poppins', sans-serif" }}>B.E. Computer Science Engineering • <span className="text-blue-600 font-bold">CGPA: 9.0</span></p>
                       </div>
                     </div>
 
@@ -68,8 +68,8 @@ function App() {
                         <i className="bi bi-book"></i>
                       </div>
                       <div>
-                        <h4 className="font-bold text-gray-800 text-[1rem]">Jawahar Higher Secondary School (CBSE)</h4>
-                        <p className="text-sm text-gray-500 font-medium mt-1">HSC / SSLC</p>
+                        <h4 className="font-bold text-gray-800 text-[1rem]" style={{ fontFamily: "'Poppins', sans-serif" }}>Jawahar Higher Secondary School (CBSE)</h4>
+                        <p className="text-sm text-gray-500 font-medium mt-1" style={{ fontFamily: "'Poppins', sans-serif" }}>HSC / SSLC</p>
                       </div>
                     </div>
                   </div>

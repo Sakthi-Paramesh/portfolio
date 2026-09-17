@@ -56,11 +56,11 @@ export default function Certifications() {
 
       <div className="container mx-auto px-6">
         {/* Header */}
-        <div className="mb-12">
-          <h2 className="text-3xl md:text-4xl font-bold text-white mb-3">
+        <div className="mb-12 text-center">
+          <h2 className="text-3xl md:text-4xl font-bold text-white mb-3" style={{ fontFamily: "'Poppins', sans-serif" }}>
             Certifications &amp; Awards
           </h2>
-          <p className="text-white/60">Recognition for skills and achievements</p>
+          <p className="text-white/60" style={{ fontFamily: "'Poppins', sans-serif" }}>Recognition for skills and achievements</p>
         </div>
 
         {/* Grid */}
@@ -87,7 +87,7 @@ export default function Certifications() {
 
                 {/* Content */}
                 <div className="mt-1">
-                  <h3 className="font-semibold text-white text-base leading-snug mb-1">{cert.title}</h3>
+                  <h3 className="font-semibold text-white text-base leading-snug mb-1" style={{ fontFamily: "'Poppins', sans-serif" }}>{cert.title}</h3>
                   <p className="text-xs text-blue-400 font-medium mb-2">
                     {cert.issuer}
                   </p>

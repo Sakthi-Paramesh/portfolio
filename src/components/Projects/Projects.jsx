@@ -47,7 +47,7 @@ function ProjectCard({ project, index }) {
       {/* Card Content */}
       <div className="p-6 flex flex-col flex-1 gap-4">
         <div>
-          <h3 className="text-xl font-bold text-white mb-2">{project.title}</h3>
+          <h3 className="text-xl font-bold text-white mb-2" style={{ fontFamily: "'Poppins', sans-serif" }}>{project.title}</h3>
           <p className="text-sm text-white/60 leading-relaxed">{project.description}</p>
         </div>
 
@@ -90,11 +90,11 @@ export default function Projects() {
       <div className="container relative z-10">
         {/* Header */}
         <div className="text-center mb-16">
-          <p className="font-mono text-primary text-xs tracking-[0.3em] uppercase mb-3">— Featured Work —</p>
-          <h2 className="section-title">
+          <p className="font-mono text-primary text-xs tracking-[0.3em] uppercase mb-3" style={{ fontFamily: "'Poppins', sans-serif" }}>— Featured Work —</p>
+          <h2 className="text-3xl md:text-4xl font-bold text-white mb-3" style={{ fontFamily: "'Poppins', sans-serif" }}>
             My Recent <span className="gradient-text">Projects</span>
           </h2>
-          <p className="section-subtitle max-w-xl mx-auto mt-3">
+          <p className="section-subtitle max-w-xl mx-auto mt-3" style={{ fontFamily: "'Poppins', sans-serif" }}>
             Real-world applications built with AI diagnostics, Spring Boot backend systems, and modern React interfaces.
           </p>
         </div>
