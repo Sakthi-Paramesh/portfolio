@@ -1,4 +1,4 @@
-import { useRef } from 'react';
+import { useRef, useEffect, useCallback } from 'react';
 import { motion } from 'framer-motion';
 import { FaJava, FaPython, FaReact, FaGithub, FaDatabase, FaNodeJs } from 'react-icons/fa';
 import { SiSpringboot, SiMysql, SiTensorflow, SiDjango, SiBootstrap, SiTailwindcss, SiMongodb, SiVite, SiExpress, SiJavascript } from 'react-icons/si';
@@ -23,6 +23,64 @@ const getTechIcon = (tech) => {
   return <FaDatabase color="#6b7280" className="opacity-50" />;
 };
 
+function LivePreviewCard({ url }) {
+  const iframeRef = useRef(null);
+  const rafRef = useRef(null);
+  const scrollYRef = useRef(0);
+  const dirRef = useRef(1);
+  const pausedRef = useRef(false);
+
+  const animate = useCallback(() => {
+    if (!pausedRef.current) {
+      const iframe = iframeRef.current;
+      try {
+        const doc = iframe?.contentWindow?.document;
+        if (doc) {
+          const maxScroll = doc.body.scrollHeight - doc.documentElement.clientHeight;
+          scrollYRef.current += 0.6 * dirRef.current;
+          if (scrollYRef.current >= maxScroll) dirRef.current = -1;
+          if (scrollYRef.current <= 0) dirRef.current = 1;
+          iframe.contentWindow.scrollTo(0, scrollYRef.current);
+        }
+      } catch (_) {}
+    }
+    rafRef.current = requestAnimationFrame(animate);
+  }, []);
+
+  useEffect(() => {
+    rafRef.current = requestAnimationFrame(animate);
+    return () => cancelAnimationFrame(rafRef.current);
+  }, [animate]);
+
+  return (
+    <div
+      className="relative overflow-hidden border-b border-white/10"
+      style={{ height: '13rem' }}
+      onMouseEnter={() => { pausedRef.current = true; }}
+      onMouseLeave={() => { pausedRef.current = false; }}
+    >
+      {/* Scale-down wrapper so full desktop site fits */}
+      <div style={{ width: '166.67%', height: '166.67%', transform: 'scale(0.6)', transformOrigin: 'top left', pointerEvents: 'none' }}>
+        <iframe
+          ref={iframeRef}
+          src={url}
+          title="Live Preview"
+          scrolling="no"
+          style={{ width: '100%', height: '100%', border: 'none', display: 'block' }}
+        />
+      </div>
+      {/* Gradient overlay bottom */}
+      <div className="absolute inset-0 bg-gradient-to-t from-black/40 to-transparent pointer-events-none" />
+      {/* Live badge */}
+      <div className="absolute top-2 right-2 flex items-center gap-1.5 px-2 py-0.5 rounded-full text-xs font-semibold"
+        style={{ background: 'rgba(0,0,0,0.55)', color: '#4ade80', backdropFilter: 'blur(6px)', border: '1px solid rgba(74,222,128,0.3)' }}>
+        <span className="w-1.5 h-1.5 rounded-full bg-green-400 animate-pulse inline-block" />
+        LIVE
+      </div>
+    </div>
+  );
+}
+
 function ProjectCard({ project, index }) {
   return (
     <motion.div
@@ -32,17 +90,21 @@ function ProjectCard({ project, index }) {
       transition={{ duration: 0.5, delay: index * 0.1 }}
       className="flex flex-col rounded-xl border border-white/10 bg-[#0c0c0c] hover:bg-white/[0.04] transition-colors duration-300 overflow-hidden"
     >
-      {/* Image Container */}
-      <div className="relative h-48 sm:h-52 overflow-hidden border-b border-white/10">
-        <img
-          src={project.image}
-          alt={project.title}
-          loading="lazy"
-          className="w-full h-full object-cover transition-transform duration-500 hover:scale-105"
-        />
-        {/* Dark Overlay */}
-        <div className="absolute inset-0 bg-gradient-to-t from-[#0c0c0c] to-transparent opacity-80" />
-      </div>
+      {/* Image / Live Preview Container */}
+      {project.livePreview ? (
+        <LivePreviewCard url={project.live} />
+      ) : (
+        <div className="relative h-48 sm:h-52 overflow-hidden border-b border-white/10">
+          <img
+            src={project.image}
+            alt={project.title}
+            loading="lazy"
+            className="w-full h-full object-cover transition-transform duration-500 hover:scale-105"
+          />
+          {/* Dark Overlay */}
+          <div className="absolute inset-0 bg-gradient-to-t from-[#0c0c0c] to-transparent opacity-80" />
+        </div>
+      )}
 
       {/* Card Content */}
       <div className="p-6 flex flex-col flex-1 gap-4">
@@ -90,13 +152,9 @@ export default function Projects() {
       <div className="container relative z-10">
         {/* Header */}
         <div className="text-center mb-16">
-          <p className="font-mono text-primary text-xs tracking-[0.3em] uppercase mb-3" style={{ fontFamily: "'Poppins', sans-serif" }}>— Featured Work —</p>
-          <h2 className="text-3xl md:text-4xl font-bold text-white mb-3" style={{ fontFamily: "'Poppins', sans-serif" }}>
-            My Recent <span className="gradient-text">Projects</span>
+          <h2 className="text-3xl md:text-4xl font-bold mb-3" style={{ fontFamily: "'Poppins', sans-serif", color: '#000000' }}>
+            My Recent Projects
           </h2>
-          <p className="section-subtitle max-w-xl mx-auto mt-3" style={{ fontFamily: "'Poppins', sans-serif" }}>
-            Real-world applications built with AI diagnostics, Spring Boot backend systems, and modern React interfaces.
-          </p>
         </div>
 
         {/* Grid */}

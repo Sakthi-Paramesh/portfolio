@@ -32,7 +32,7 @@ export default function Navbar() {
           <Link to="home" smooth duration={600} className="flex items-center gap-3 group" style={{ cursor: 'none' }}>
             <div className="relative flex-shrink-0">
               <div className="rounded-full overflow-hidden"
-                style={{ width: '2.5rem', height: '2.5rem', background: 'linear-gradient(135deg, #3b82f6, #2563eb)', padding: '2px', boxShadow: '0 0 16px rgba(59,130,246,0.55)' }}>
+                style={{ width: '2.5rem', height: '2.5rem' }}>
                 <img
                   src="/profile.png"
                   alt="Sakthi Paramesh"
@@ -40,12 +40,10 @@ export default function Navbar() {
                   style={{ objectPosition: 'center top' }}
                 />
               </div>
-              <div className="absolute inset-0 rounded-full opacity-0 group-hover:opacity-100 transition-opacity duration-300"
-                style={{ boxShadow: '0 0 22px rgba(59,130,246,0.9)' }} />
             </div>
-            <span className="hidden sm:block font-extrabold text-white"
-              style={{ fontSize: '1.05rem', fontFamily: "'Poppins', sans-serif", letterSpacing: '0.05em', textTransform: 'uppercase' }}>
-              Sakthi<span className="gradient-text">Paramesh</span>
+            <span className="hidden sm:block font-extrabold"
+              style={{ fontSize: '1.05rem', fontFamily: "'Poppins', sans-serif", letterSpacing: '0.05em', textTransform: 'uppercase', color: '#000000' }}>
+              SAKTHI PARAMESH B
             </span>
           </Link>
 

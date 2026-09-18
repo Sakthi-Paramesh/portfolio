@@ -25,7 +25,7 @@ export default function About() {
           className="flex flex-col md:flex-row items-center gap-12 md:gap-20"
         >
           {/* Left - Text Content */}
-          <div className="flex flex-col gap-6 text-white/80 leading-relaxed text-[0.95rem] md:text-[1.05rem]">
+          <div className="flex flex-col gap-6 text-white/80 leading-relaxed text-[0.95rem] md:text-[1.05rem] text-justify">
             <p>
               I&apos;m <strong className="text-white">Sakthi Paramesh B</strong> from Tamil Nadu — a passionate <strong className="text-white">B.E. Computer Science Engineering</strong> (2023–{PERSONAL.graduationYear}) at Shree Venkateshwara Hi-Tech Engineering College (Autonomous). I specialize in AI integration and Full-Stack development and enjoy building intelligent, scalable applications.
             </p>

@@ -134,7 +134,7 @@ export const PROJECTS = [
     description:
       'End-to-end MERN stack e-commerce platform with real-time cart management, JWT-based authentication, and a secure Razorpay-ready checkout flow. Features an admin dashboard for live inventory control, order tracking, and dark mode support.',
     tech: ['React', 'Node.js', 'Express', 'MongoDB', 'Tailwind CSS'],
-    image: '/shophub-ecommerce.jpg',
+    image: '/shophub-ecommerce.png',
     github: 'https://github.com/Sakthi-Paramesh/E_commerce.git',
     live: 'https://e-commerce-vh41.onrender.com',
     color: '#3B82F6',
