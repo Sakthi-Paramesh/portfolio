@@ -9,7 +9,7 @@ export const PERSONAL = {
   linkedin: 'https://www.linkedin.com/in/sakthi-paramesh-b-93643834a',
   instagram: 'https://instagram.com/itz.sxkthi',
   location: 'Cuddalore, Tamil Nadu',
-  resumeUrl: '/Sakthi_Paramesh_B_Resume.png',
+  resumeUrl: '/Sakthiparamesh_SD.pdf',
   college: 'Shree Venkateshwara Hi-Tech Engineering College',
   degree: 'B.E. Computer Science Engineering',
   graduationYear: '2027',
@@ -334,7 +334,7 @@ export const QUOTES = [
 export const NAV_LINKS = [
   { label: 'About', href: 'about' },
   { label: 'Skills', href: 'skills' },
-  { label: 'Experience', href: 'experience' },
   { label: 'Projects', href: 'projects' },
+  { label: 'Experience', href: 'experience' },
   { label: 'Certifications', href: 'certifications' },
 ];

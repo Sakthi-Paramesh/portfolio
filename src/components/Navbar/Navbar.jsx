@@ -57,7 +57,7 @@ export default function Navbar() {
                   duration={600}
                   offset={-70}
                   className={`nav-link ${active === href ? 'active' : ''}`}
-                  style={{ cursor: 'none' }}
+                  style={{ cursor: 'none', fontFamily: "'Poppins', sans-serif", fontWeight: 700 }}
                 >
                   {label}
                 </Link>
