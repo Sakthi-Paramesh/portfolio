@@ -2,68 +2,98 @@ import { motion } from 'framer-motion';
 
 export default function Experience() {
   return (
-    <section id="experience" className="py-24 relative overflow-hidden">
+    <section id="experience" className="py-16">
       <div className="container max-w-4xl mx-auto px-6">
-        
-        {/* Simple Flat Header matching the new minimal style */}
-        <div className="text-center mb-16">
-          <h2 className="text-3xl md:text-4xl font-bold text-white tracking-wide">
-            Professional Experience
-          </h2>
-        </div>
 
-        {/* Clean, single block experience layout */}
+        {/* Section Heading */}
         <motion.div
-          initial={{ opacity: 0, y: 20 }}
+          initial={{ opacity: 0, y: 16 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          transition={{ duration: 0.6 }}
-          className="border border-white/10 rounded-2xl p-8 md:p-10 transition-colors shadow-lg"
-          style={{ background: 'rgba(255,255,255,0.02)' }}
+          transition={{ duration: 0.5 }}
+          className="mb-10"
         >
-          <div className="flex flex-col md:flex-row justify-between md:items-center mb-6 gap-4">
-            <div className="flex items-center gap-5">
-              <div className="w-14 h-14 rounded-xl flex items-center justify-center shrink-0 overflow-hidden border border-white/5 shadow-md bg-white">
-                <img src="/thiranex_logo.jpg" alt="Thiranex Logo" className="w-full h-full object-cover p-1" />
+          <h2 className="text-2xl font-bold text-gray-900" style={{ fontFamily: "'Poppins', sans-serif" }}>
+            Professional Experience
+          </h2>
+        </motion.div>
+
+        {/* Experience Entry */}
+        <motion.div
+          initial={{ opacity: 0, y: 16 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, amount: 0.3 }}
+          transition={{ duration: 0.5 }}
+          className="flex flex-col gap-4"
+          style={{ paddingLeft: '4px' }}
+        >
+          {/* Company + Date Row */}
+          <div className="flex flex-col md:flex-row md:items-center justify-between gap-2">
+            <div className="flex items-center gap-4">
+              {/* Logo */}
+              <div className="w-11 h-11 rounded-lg overflow-hidden border border-gray-200 shrink-0 shadow-sm">
+                <img src="/thiranex_logo.jpg" alt="Thiranex Logo" className="w-full h-full object-cover p-0.5" />
               </div>
               <div>
-                <h3 className="text-2xl font-bold text-white tracking-wide">Thiranex</h3>
-                <p className="text-[1rem] text-primary font-semibold mt-1 uppercase tracking-wider font-mono">Professional Experience</p>
+                <h3 className="text-lg font-bold text-gray-900" style={{ fontFamily: "'Poppins', sans-serif" }}>Thiranex</h3>
+                <p className="text-xs text-blue-600 font-semibold uppercase tracking-wider mt-0.5" style={{ fontFamily: "'Poppins', sans-serif" }}>
+                  Internship
+                </p>
               </div>
             </div>
-            <div 
-              className="inline-block px-4 py-1.5 rounded-full font-mono text-sm font-bold whitespace-nowrap self-start"
-              style={{
-                background: 'rgba(59,130,246,0.1)',
-                border: '1px solid rgba(59,130,246,0.3)',
-                color: '#3b82f6'
-              }}
+
+            {/* Date Badge */}
+            <span
+              className="self-start md:self-auto text-xs font-semibold px-3 py-1 rounded-full"
+              style={{ background: '#eff6ff', color: '#3b82f6', border: '1px solid #bfdbfe', fontFamily: "'Poppins', sans-serif" }}
             >
               May 2026 – June 2026
-            </div>
+            </span>
           </div>
-          
-          <div className="text-white/70 leading-relaxed text-[0.95rem] space-y-4">
-            <p>
-              Completed professional training and gained hands-on experience in modern software engineering practices. Collaborated on technical solutions and improved proficiency in scalable web development and industry-standard workflows.
+
+          {/* Description */}
+          <p className="text-sm text-gray-500 leading-relaxed" style={{ fontFamily: "'Poppins', sans-serif" }}>
+            Completed professional training and gained hands-on experience in modern software engineering practices.
+            Collaborated on technical solutions and improved proficiency in scalable web development and industry-standard workflows.
+          </p>
+
+          {/* Tech Stack */}
+          <div>
+            <p className="text-xs font-semibold text-gray-400 uppercase tracking-widest mb-2" style={{ fontFamily: "'Poppins', sans-serif" }}>
+              Tech Stack Used
             </p>
-            <div className="pt-2">
-              <a 
-                href="/thiranex-internship-cert.jpg" 
-                target="_blank" 
-                rel="noreferrer" 
-                className="inline-flex items-center gap-2 px-4 py-2 rounded-lg text-sm font-semibold text-white transition-all transform hover:-translate-y-0.5"
-                style={{
-                  background: 'linear-gradient(135deg, rgba(59,130,246,0.2), rgba(37,99,235,0.2))',
-                  border: '1px solid rgba(59,130,246,0.3)',
-                  boxShadow: '0 4px 15px rgba(0,0,0,0.1)'
-                }}
-              >
-                <i className="bi bi-award text-blue-400 text-base"></i>
-                View Certificate
-              </a>
+            <div className="flex flex-wrap gap-2">
+              {['React.js', 'Node.js', 'Express.js', 'MongoDB', 'Tailwind CSS', 'Git', 'REST API'].map((tech) => (
+                <span
+                  key={tech}
+                  className="text-xs font-semibold px-3 py-1 rounded-full"
+                  style={{
+                    background: '#eff6ff',
+                    color: '#3b82f6',
+                    border: '1px solid #bfdbfe',
+                    fontFamily: "'Poppins', sans-serif"
+                  }}
+                >
+                  {tech}
+                </span>
+              ))}
             </div>
           </div>
+
+          {/* Certificate Link */}
+          <div>
+            <a
+              href="/thiranex-internship-cert.jpg"
+              target="_blank"
+              rel="noreferrer"
+              className="inline-flex items-center gap-2 text-sm font-semibold text-blue-600 hover:text-blue-700 transition-colors"
+              style={{ fontFamily: "'Poppins', sans-serif" }}
+            >
+              <i className="bi bi-award text-blue-500"></i>
+              View Certificate
+            </a>
+          </div>
+
         </motion.div>
       </div>
     </section>

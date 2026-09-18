@@ -47,7 +47,7 @@ export default function Certifications() {
   const [selectedCert, setSelectedCert] = useState(null);
 
   return (
-    <section id="certifications" className="section py-20">
+    <section id="certifications" className="section py-20 pb-0">
       <AnimatePresence>
         {selectedCert && (
           <CertModal cert={selectedCert} onClose={() => setSelectedCert(null)} />
